@@ -64,6 +64,8 @@ background-position: top center;
 	border-color: #807A76;
 	cursor: pointer;
 	vertical-align: bottom;
+	font-family: arial;
+	font-size: 11px;
 }
 
 #actionscont {
@@ -77,13 +79,15 @@ background-position: top center;
 	text-align: center;
 	display: inline-block;
 	width: 75px;
-	height: 75px;
+	height: 85px;
 	background-color: #FFF5EB;
 	border-style: solid;
 	border-width: 2px;
 	border-color: #807A76;
 	cursor: pointer;
 	vertical-align: bottom;
+	font-family: arial;
+	font-size: 11px;
 }
 
 .shop_item:hover {
