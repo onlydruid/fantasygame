@@ -147,6 +147,8 @@ background-position: top center;
 	position: absolute;
 	top: 22%;
 	left:50%;
+	-ms-transform:translateX(-50%);
+	-webkit-transform:translateX(-50%);
 	transform:translateX(-50%);
 	height: 100px;
 	width:	275px;
