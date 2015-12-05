@@ -148,8 +148,8 @@ background-position: top center;
 	top: 22%;
 	left:50%;
 	transform:translateX(-50%);
-	height: 150px;
-	width:	412.5px;
+	height: 100px;
+	width:	275px;
 	}
 	
 #menucontainer {
@@ -163,15 +163,19 @@ background-position: top center;
 
 #menutitle {
 	display: block;
-	height: 150px;
-	width:	412.5px;
+	height: 100px;
+	width:	275px;
+	-ms-transform:translateX(-50%);
+	-webkit-transform:translateX(-50%);
 	transform:translateX(-50%);
 }
 
 .menuitem {
 	display: block;
-	height: 150px;
-	width:	412.5px;
+	height: 100px;
+	width:	275px;
+	-ms-transform:translateX(-50%);
+	-webkit-transform:translateX(-50%);
 	transform:translateX(-50%);
 	cursor: pointer;
 }

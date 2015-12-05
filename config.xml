@@ -1,12 +1,12 @@
 <!-- config.xml reference: http://docs.phonegap.com/en/edge/config_ref_index.md.html#The%20config.xml%20File --> 
 
- <widget id="com.example.splash" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-        <name>Splash Screen </name>
+ <widget id="com.dannyhines.elfensplash" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+        <name>ElfenTrail</name>
         <description>
-            ElfenTrail JavaScript
+            ElfenTrail - A mobile JavaScript experiment with Elves
         </description>
-        <author email="andreea.molnar@port.ac.uk" href="#">
-            ElfenTrail
+        <author email="up747406@myport.ac.uk" href="#">
+            Daniel Hines
         </author>
         <content src="index.html" />
         <access origin="*" />
