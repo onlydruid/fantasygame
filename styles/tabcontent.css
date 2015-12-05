@@ -2,9 +2,9 @@
 ul.tabs
 {
 	position: absolute;
-	top: calc(54% + 5px);
+	top: calc(53%);
     padding: 14px 0 30px;
-    margin:0 auto;
+    margin:2px;
     font-size: 0;
     list-style-type: none;
     text-align: center; /*set to left, center, or right to align the tabs as desired*/
@@ -64,7 +64,7 @@ div.tabcontents
 	position: absolute;
     border: 1px solid #CCC; 
 	left: 5%;
-	padding-top: 30px;
+	padding-top: 20px;
 	width: 90vw;
 	height: 35%;
     border-top-color:#ffccff;

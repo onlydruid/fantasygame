@@ -66,6 +66,26 @@ background-position: top center;
 	vertical-align: bottom;
 }
 
+#actionscont {
+	left: 0;
+	max-width: 160px;
+}
+
+.actionbutton {
+	overflow: hidden;
+	margin-top: 20px;
+	text-align: center;
+	display: inline-block;
+	width: 75px;
+	height: 75px;
+	background-color: #FFF5EB;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #807A76;
+	cursor: pointer;
+	vertical-align: bottom;
+}
+
 .shop_item:hover {
 	background-color: #E6DCD4;
 }
