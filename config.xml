@@ -39,6 +39,6 @@
 			180x180 for extra extra high-density (XXHDPI)
 			192x192 for extra extra extra high-density (XXXHDPI)
 			-->
-		<icon src="test.png" />
+		<icon src="images/icon.png"/>
 
 </widget>
