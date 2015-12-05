@@ -69,11 +69,14 @@ background-position: top center;
 }
 
 #actionscont {
-	left: 0;
+	margin-left: 50px;
+	float: left;
 	max-width: 160px;
+	display: inline;
 }
 
 #resourcecont {
+	display: inline;
 	margin-right: 50px;
 	float: right;
 	max-width: 160px;
