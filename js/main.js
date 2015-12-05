@@ -144,7 +144,7 @@ document.getElementById('luckPotion_store').addEventListener('click', function()
 
 //when the elfqueen is clicked, add 1 to blessing using the add function previously created
 document.getElementById("elfqueen").addEventListener('click', function () {
-	if (steps > 0 && steps < 4){
+	if (steps > 0 && steps < 5){
 		takeStep();
 		if (steps > 1){
 			document.getElementById('buttontext').innerHTML = "Pray to the Queen";
