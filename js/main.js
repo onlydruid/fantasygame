@@ -16,8 +16,8 @@ var resource = {
     name: 'resource',
     amountOwned: 0,
     basePrice: 100,
-	incPerSec: 1,
-	incrementorOf: 'gold',  //all other attributes are self explanatory, however incrementorOf simply defines which resource the current item increments (if any)
+	incPerSec: 2,
+	incrementorOf: 'blessing',  //all other attributes are self explanatory, however incrementorOf simply defines which resource the current item increments (if any)
     buyUnit: 'gold',
     previousAmountOwned: 0,
 
@@ -36,10 +36,21 @@ var resource = {
 		itemAmount.innerHTML = this.amountOwned;
 	},
 	
-	//for setting up the timed increments, the amount of currency given per second * how many of that item owned
+	useItemButton: function() {
+		var useButton = document.createElement(this.name + 'Use');
+		
+		
+		var btn = document.createElement("BUTTON");        // Create a button
+		var t = document.createTextNode("Use Item"); 		// Create a text node
+		btn.setAttribute("id", this.name + '_use');
+		btn.appendChild(t);                                // Append the text to <button>
+		document.getElementById(this.name + '_display').appendChild(btn);                    // Append <button> to to the item display in the inventory
+	},
+	
+	//for setting up the timed increments, the amount of currency given per second
 	tick: function() {
 	var incItem = tradeResources[this.incrementorOf];
-	incItem.amountOwned += (this.amountOwned * this.incPerSec);
+	incItem.amountOwned += (this.incPerSec);
 	incItem.updateAmountDisplay();
 	},
 	
@@ -108,16 +119,30 @@ document.getElementById('amulet_store').addEventListener('click', function() {
     var amuletsOwned = resource.amulet.amountOwned;
 	if (amuletsOwned === 0){
 		resource.amulet.buy(1);
-		resource.amulet.addToInvent("Holy Amulet: ");
+		resource.amulet.addToInvent("Holy Amulet: ");  //if there is no amulet owned previously, an element to display them is created in the inventory
 		resource.amulet.updateAmountDisplay()
+		resource.amulet.useItemButton();
+		//sets tick function to run every second for 5 seconds, giving the player +1 blessing for 5 seconds when they click the use button created by useItemButton();
+		document.getElementById('amulet_use').addEventListener('click', function() {
+			var i = setInterval(function(){resource.amulet.tick()}, 1000);
+			setTimeout(function( ) { clearInterval( i ); }, 5000);
+			document.getElementById('amulet_use').style.display = 'none';
+		});
 	} else {
 		resource.amulet.buy(1);
 		resource.amulet.updateAmountDisplay()
+		
+		document.getElementById('amulet_use').addEventListener('click', function() {
+			var i = setInterval(function(){resource.amulet.tick()}, 1000);
+			setTimeout(function( ) { clearInterval( i ); }, 5000);
+			document.getElementById('amulet_use').style.display = 'none';
+		});
 	};
-	//sets tick function to run every 1000 milliseconds (1 second)
-	setInterval(function(){resource.amulet.tick()}, 1000);
+	
 	
 });
+
+
 
 resource.luckPotion = Object.create(resource);
 resource.luckPotion.name = 'luckPotion';

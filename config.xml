@@ -16,20 +16,20 @@
 		<gap:plugin name="org.apache.cordova.splashscreen" />
 		<preference name="SplashScreen" value="screen"/>
 		<!--ldpi - 240x320 0.5-->
-		<gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="images/bgimg1.jpg" />
+		<gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="images/splashimg1.jpg" />
 		<!--mdpi 320x480 1 -->
-		<gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="images/bgimg1.jpg" />
+		<gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="images/splashimg1.jpg" />
 		<!--hdpi: 480 x 800 1.5-->
-		<gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="images/bgimg2.jpg" />
+		<gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="images/splashimg2.jpg" />
 		<!--xhdpi: 640 x 960 2-->
-		<gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="images/bgimg2.jpg" />
+		<gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="images/splashimg2.jpg" />
 		
 		<!--optional - how long the splash screen to be displayed for -->
 		<!--preference name="SplashScreenDelay" value="1000000" /-->
 		
 		<!--if the dimensions of the screen do not match the images above, the default will be displayed -->
 		<!-- this must come after all spalsh screen elements of the specific sizes -->
-		<gap:splash src="images/bgimg1.jpg" />
+		<gap:splash src="images/splashimg1.jpg" />
 		
 		<!--icons can be customised - check here for more information: http://docs.phonegap.com/en/3.5.0/config_ref_images.md.html-->
 		<!--Android icons density: 36x36 for low-density (LDPI)
