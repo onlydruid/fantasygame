@@ -25,15 +25,14 @@ var resource = {
 	//takes a description input for unique inventory display names
 	addToInvent: function(description) {
 		var itemDisplay = document.createElement(this.name + 'Display');
-		itemDisplay.setAttribute("id", this.name + "display");
-		itemDisplay.setAttribute("class", this.name + "display");
+		itemDisplay.setAttribute("id", this.name + "_display");
 		
 		document.getElementById('inventory').appendChild(itemDisplay);
 		itemDisplay.innerHTML = description;
 		var itemAmount = document.createElement(this.name +'Amount');
-		itemAmount.setAttribute("id", this.name + "amount");
+		itemAmount.setAttribute("id", this.name + "_amount");
 		
-		document.getElementById(this.name + 'display').appendChild(itemAmount);
+		document.getElementById(this.name + '_display').appendChild(itemAmount);
 		itemAmount.innerHTML = this.amountOwned;
 	},
 	
@@ -73,9 +72,6 @@ var resource = {
     updateAmountDisplay: function() {
         var displayElement = document.getElementById(this.name + '_display');
         var amountElement = document.getElementById(this.name + '_amount');
-        if (displayElement && this.amountOwned > 0) {
-            displayElement.style.display = 'block';
-        }
         if (amountElement) {
             amountElement.innerHTML = this.amountOwned;
         }
@@ -116,6 +112,7 @@ document.getElementById('amulet_store').addEventListener('click', function() {
 		resource.amulet.updateAmountDisplay()
 	} else {
 		resource.amulet.buy(1);
+		resource.amulet.updateAmountDisplay()
 	};
 	//sets tick function to run every 1000 milliseconds (1 second)
 	setInterval(function(){resource.amulet.tick()}, 1000);
@@ -132,7 +129,7 @@ document.getElementById('luckPotion_store').addEventListener('click', function()
 		resource.luckPotion.addToInvent("Holy Amulet: ");
 		resource.luckPotion.updateAmountDisplay()
 	} else {
-		resource.amulet.buy(1);
+		resource.luckPotion.buy(1);
 	};
 	
 });
@@ -142,13 +139,15 @@ document.getElementById('luckPotion_store').addEventListener('click', function()
 //BUTTONS/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-//when the elfqueen is clicked, add 1 to blessing using the add function previously created
+//when the elfqueen is clicked, add 1 to blessing using the add function previously created, change the inner html and display the well of riches button on the appropriate story pieces
 document.getElementById("elfqueen").addEventListener('click', function () {
-	if (steps > 0 && steps < 5){
+	if (steps < 5){
+		tradeResources.blessing.add(1);
+		};
+	if (steps > 0 && steps < 4){
 		takeStep();
 		if (steps > 1){
 			document.getElementById('buttontext').innerHTML = "Pray to the Queen";
-			tradeResources.blessing.add(1);
 		};
 	};
 	if (steps === 3){
@@ -206,7 +205,10 @@ if coinChance is greater than 50 so there's a 1/2 chance to find a coin each cli
 		
 	//when coin is clicked, +1 to gold counter and delete the coin
 	coinIcon.addEventListener('click', function(){
-		tradeResources.gold.add(1);
+		if (tradeResources.gold.amountOwned === 0){
+			document.getElementById('gold_display').style.display = 'block';
+		};
+		tradeResources.gold.add(15);
 		goldOn = false;
 		coinIcon.parentNode.removeChild(coinIcon);
 		});

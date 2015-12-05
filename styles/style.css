@@ -48,6 +48,7 @@ background-position: top center;
 	font-size: 12px;
 	font-family: 'Press Start 2P', cursive;
 	text-decoration: underline;
+	padding-bottom: 15px;
 }
 
 
@@ -140,4 +141,39 @@ background-position: top center;
 	width: 6em;
 }
 
+/*///////////////////////////////////////////////  MENU PAGE  //////////////////////////////////////////////////////////*/
+
+#description {
+	position: absolute;
+	top: 22%;
+	left:50%;
+	transform:translateX(-50%);
+	height: 150px;
+	width:	412.5px;
+	}
+	
+#menucontainer {
+	position: absolute;
+	height: 60%;
+	width: 100%;
+	top: 35%;
+	text-align: center;
+	left: 50%;
+}
+
+#menutitle {
+	display: block;
+	height: 150px;
+	width:	412.5px;
+	transform:translateX(-50%);
+}
+
+.menuitem {
+	display: block;
+	height: 150px;
+	width:	412.5px;
+	transform:translateX(-50%);
+	cursor: pointer;
+}
+	
 	
