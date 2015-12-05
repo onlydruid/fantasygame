@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="styles/tabcontent.css" rel="stylesheet" type="text/css" />
+<script src="js	/tabcontent.js" type="text/javascript"></script>	
+<link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="styles/style.css">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+
+
+<body>
+
+<div id="textPanel">
+	<div id="textBox">
+		<div id="fadeout"></div>
+	</div>
+</div>
+<ul class="tabs"> <!-- Elements for the tabbed menu, links --> 
+	<li><a href="#actions">Actions</a></li>
+	<li><a href="#shop">Shop</a></li>
+	<li><a href="#inventory">Inventory</a></li>
+	<li><a href="#options">Options</a></li>
+</ul>
+<div class="tabcontents" class="menu"> <!-- everything in the tabbed menu is contained within this div --> 
+	<div id="actions" class="tab">
+	
+		<span class="paneltitle">Actions</span><br>
+		
+		<!-- some of the buttons for actions in the game -->
+		
+		<button id="goldfinder" class="shop_item">
+			<img id="findereyes" src="images/eyes.gif" height="50px" width="50px">
+			<br>
+			Well of Riches
+		</button>
+		
+		<div id="elfqueen" class="shop_item">
+			<img src="images/elfqueen.png" height="75px" width="50px">
+			<br>
+			<span id="buttontext">Enter the Queens Chamber</span>
+		</div>
+		<br>
+	</div>
+	
+	<button id="lookaround" class="shop_item">
+		<img id="findereyes" src="images/eyes.gif" height="50px" width="50px">
+		<br>
+		Look Around
+	</button>
+
+	<div id="inventory" class="menu">
+		<span class="paneltitle">Inventory</span>
+		<p id="blessing_display" class="resource_display">Blessings: <span id="blessing_amount">0</span></p>
+		<p id="gold_display" class="resource_display">Gold: <span id="gold_amount">0</span></p>
+		<div id="ibox">
+		</div>
+	</div>
+
+	<div id="shop" class="menu">
+		<span class="paneltitle">Shop</span>
+		<br>
+		<div id="amulet_store" class="shop_item"> <!-- The images within this div are the shop items, although on the finished app they won't necessarily all be there as the shop items will appear and disappear depending on the story position --> 
+			<img src="images/breadimage.png" height="50px" width="50px">
+			<br>Purchase Holy Amulet (+1 gold/sec): <span id="amulet_cost">15</span> Gold
+		</div>
+		<div id="luckPotion_store" class="shop_item" alt="Coins you find are worth between 5-15 gold.">
+			<img src="images/potionimage.gif" height="50px" width="50px">
+			<br>Purchase Luck Doubling Potion: 25 Gold
+		</div>
+		<div id="crystal_ball" class="shop_item">
+			<img src="images/crystalimage.gif" height="50px" width="50px">
+			<br>Purchase Crystal Ball: 1000 Gold
+		</div>
+	</div>
+	
+	<div id="options" class="menu">
+	<span class="paneltitle">Options</span>
+		<button id="save">Save your progress</button>
+	</div>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>

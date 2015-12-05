@@ -1,0 +1,44 @@
+<!-- config.xml reference: http://docs.phonegap.com/en/edge/config_ref_index.md.html#The%20config.xml%20File --> 
+
+ <widget id="com.example.splash" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+        <name>ElfenTrail Splash </name>
+        <description>
+            Playing with the spalsh screen
+        </description>
+        <author email="andreea.molnar@port.ac.uk" href="#">
+            CT5IMA
+        </author>
+        <content src="index.html" />
+        <access origin="*" />
+		
+		<!--splash screen for android: change the images below with the appropiate images-->
+		<!--check also: http://docs.phonegap.com/en/3.5.0/config_ref_images.md.html -->
+		<gap:plugin name="org.apache.cordova.splashscreen" />
+		<preference name="SplashScreen" value="screen"/>
+		<!--ldpi - 240x320 0.5-->
+		<gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="test.png" />
+		<!--mdpi 320x480 1 -->
+		<gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="test.png" />
+		<!--hdpi: 480 x 800 1.5-->
+		<gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="test.png" />
+		<!--xhdpi: 640 x 960 2-->
+		<gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="test.png" />
+		
+		<!--optional - how long the splash screen to be displayed for -->
+		<!--preference name="SplashScreenDelay" value="1000000" /-->
+		
+		<!--if the dimensions of the screen do not match the images above, the default will be displayed -->
+		<!-- this must come after all spalsh screen elements of the specific sizes -->
+		<gap:splash src="images/bgimg2.jpg" />
+		
+		<!--icons can be customised - check here for more information: http://docs.phonegap.com/en/3.5.0/config_ref_images.md.html-->
+		<!--Android icons density: 36x36 for low-density (LDPI)
+			48x48 for medium-density (MDPI)
+			72x72 for high-density (HDPI)
+			96x96 for extra high-density (XHDPI)
+			180x180 for extra extra high-density (XXHDPI)
+			192x192 for extra extra extra high-density (XXXHDPI)
+			-->
+		<icon src="images/eyes.gif" />
+
+</widget>
