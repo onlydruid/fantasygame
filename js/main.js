@@ -3,12 +3,12 @@ only one gold coin can be present at a time to avoid users being able to overcro
 
 
 /*event listener to check if on resize the window is landscape, if so display the maintenance message. remove if back to portrait
-however if the user starts the game in landcape the message will not show. 
-Separate function for initial load up of game incase player starts off in landscape, as the event listener only handles a resize event*/
+however if the user starts the game in landscape the message will not show. 
+Separate function for initial load up of game in case player starts off in landscape, as the event listener only handles a resize event*/
 
 var checkBlock = document.getElementById("landscapeblock");
 window.onload = function(){
-	if (window.innerHeight < window.innerWidth && checkBlock === null)     {  
+	if (document.documentElement.clientHeight < document.documentElement.clientWidth && checkBlock === null)     {  
 		var img = document.createElement('img');
 		img.setAttribute("id", "landscapeblock");                      //attributes and style of created element
 		img.setAttribute("style", "position:absolute;");
@@ -22,8 +22,8 @@ window.onload = function(){
 	};
 };
 
-window.addEventListener("resize",function(){
-    if(window.innerHeight < window.innerWidth && checkBlock === null) 
+window.addEventListener("deviceorientation",function(){
+    if(document.documentElement.clientHeight < document.documentElement.clientWidth && checkBlock === null) 
     {  
 			var img = document.createElement('img');
 			img.setAttribute("id", "landscapeblock");                      //attributes and style of created element
