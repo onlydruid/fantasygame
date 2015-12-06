@@ -1,4 +1,6 @@
-
+*:focus {
+    outline: 0;
+}
 
 body {
 background-image:url('../images/bgimg2.jpg');
