@@ -38,16 +38,17 @@ var resource = {
 		document.getElementById(this.name + '_display').appendChild(itemAmount);
 		itemAmount.innerHTML = this.amountOwned;
 	},
-	
+	//creates a 'use item' button 
 	useItemButton: function() {
 		var useButton = document.createElement(this.name + 'Use');
 		
 		
 		var btn = document.createElement("BUTTON");        // Create a button
-		var t = document.createTextNode("Use Item"); 		// Create a text node
+		var t = document.createTextNode("Use Item"); 		// Create a text node to apply to the button in a sec
 		btn.setAttribute("id", this.name + '_use');
 		btn.appendChild(t);                                // Append the text to <button>
 		document.getElementById(this.name + '_display').appendChild(btn);                    // Append <button> to to the item display in the inventory
+		document.getElementById(this.name + '_display').innerHTML = document.getElementById(this.name + '_display').innerHTML + '<br>';
 	},
 	
 	//for setting up the timed increments, the amount of currency given per second
@@ -134,7 +135,7 @@ document.getElementById('amulet_store').addEventListener('click', function() {
 	} else {
 		resource.amulet.buy(1);
 		resource.amulet.updateAmountDisplay()
-		
+		resource.amulet.useItemButton();
 		document.getElementById('amulet_use').addEventListener('click', function() {
 			var i = setInterval(function(){resource.amulet.tick()}, 1000);
 			setTimeout(function( ) { clearInterval( i ); }, 5000);
@@ -154,12 +155,31 @@ document.getElementById('luckPotion_store').addEventListener('click', function()
    var luckPotionOwned = resource.amulet.amountOwned;
 	if (luckPotionOwned === 0){
 		resource.luckPotion.buy(1);
-		resource.luckPotion.addToInvent("Holy Amulet: ");
-		resource.luckPotion.updateAmountDisplay()
+		resource.luckPotion.addToInvent("luckPotion: ");
+		resource.luckPotion.updateAmountDisplay()          //creates display element if this is first potion purchased
+		resource.luckPotion.useItemButton();
 	} else {
 		resource.luckPotion.buy(1);
+		resource.luckPotion.updateAmountDisplay()
+		if (document.getElementById("luckPotion_use")){
+			document.getElementById('luckPotion_use').style.display = 'normal';  //lets button reappear if another potion is bought
+		} else {
+		resource.luckPotion.useItemButton();              //otherwise create the button if it's non-existent
 	};
-	
+	};
+	document.getElementById('luckPotion_use').addEventListener('click', function() {
+		resource.luckPotion.subtract(1);
+		resource.luckPotion.updateAmountDisplay()
+		var j = setInterval(function(){
+			var x = Math.floor((Math.random()*10)+1);  //when the luck potion is used the player has the chance to find between 6-10 gold every two seconds for 10 seconds
+			if (x > 5){									// x is used as the amount of gold given as well as the if parameter
+				tradeResources.gold.add(x);
+			};
+		}, 2000);
+		
+		setTimeout(function( ) { clearInterval( j ); }, 10000);
+		document.getElementById('luckPotion_use').style.display = 'none';
+	});
 });
 
 
