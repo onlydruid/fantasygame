@@ -2,15 +2,30 @@ var goldOn = false;  /*variable for determining whether a gold coin is currently
 due to a bug only one gold coin could be present at a time but also to avoid users being able to overcrowd the page the bug was never fixed and became a feature*/
 
 if(window.innerHeight < window.innerWidth){
-    var img = document.createElement('img');
-	img.setAttribute("id", "landscapeblock");                      //attributes and style of created element
-	img.setAttribute("style", "position:absolute;");
-	img.setAttribute("src", "images/landscapeblock.jpg");
-	document.body.appendChild(img);
-	img.style.height = '100%';
-	img.style.width = '100%';
-	img.style.zIndex = "100";
+
 }
+
+
+function landscapeBlock()
+  {
+    switch(window.orientation) 
+    {  
+      case -90:
+      case 90:
+        var img = document.createElement('img');
+		img.setAttribute("id", "landscapeblock");                      //attributes and style of created element
+		img.setAttribute("style", "position:absolute;");
+		img.setAttribute("src", "images/landscapeblock.jpg");
+		document.body.appendChild(img);
+		img.style.height = '100%';
+		img.style.width = '100%';
+		img.style.zIndex = "100";
+      default:
+        document.getElementById('landscapeblock').style.display = "none";
+    }
+  }
+
+  window.addEventListener('orientationchange', doOnOrientationChange);
 
 
 //hiding elements at start of game
