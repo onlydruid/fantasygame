@@ -15,8 +15,10 @@ function landscapeBlock()
 		img.style.height = '100%';
 		img.style.width = '100%';
 		img.style.zIndex = "100";
-      default:
-        document.getElementById('landscapeblock').style.display = "none";
+		img.style.margin = '0';
+      case 0:
+        var removeBlock = document.getElementById('landscapeblock');
+		removeblock.parentNode.removeChild(removeBlock);
     }
   }
 
