@@ -6,21 +6,6 @@ only one gold coin can be present at a time to avoid users being able to overcro
 however if the user starts the game in landscape the message will not show. 
 Separate function for initial load up of game in case player starts off in landscape, as the event listener only handles a resize event*/
 
-var checkBlock = document.getElementById("landscapeblock");
-window.onload = function(){
-	if (document.documentElement.clientHeight < document.documentElement.clientWidth && checkBlock === null)     {  
-		var img = document.createElement('img');
-		img.setAttribute("id", "landscapeblock");                      //attributes and style of created element
-		img.setAttribute("style", "position:absolute;");
-		img.setAttribute("src", "images/landscapeblock.jpg");
-		document.body.appendChild(img);
-		img.style.height = '100%';
-		img.style.width = '100%';
-		img.style.zIndex = "100";
-		img.style.left = '0px';
-		img.style.top = '0px';
-	};
-};
 
 window.addEventListener("deviceorientation",function(){
     if(document.documentElement.clientHeight < document.documentElement.clientWidth && checkBlock === null) 
