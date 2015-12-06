@@ -20,7 +20,7 @@ function landscapeBlock()
     }
   }
 
- window.addEventListener('orientationchange', landscapeBlock);
+
 
 
 //hiding elements at start of game
