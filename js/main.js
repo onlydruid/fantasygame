@@ -1,13 +1,15 @@
 var goldOn = false;  /*variable for determining whether a gold coin is currently on screen, 
-due to a bug only one gold coin could be present at a time but also to avoid users being able to overcrowd the page the bug was never fixed and became a feature*/
+only one gold coin can be present at a time to avoid users being able to overcrowd the page*/
 
-function landscapeBlock()
-  {
-    switch(window.orientation) 
-    {  
-      case -90:
-      case 90:
-        var img = document.createElement('img');
+
+/*event listener to check if on resize the window is landscape, if so display the maintenance message. remove if back to portrait
+however if the user starts the game in landcape the message will not show. 
+Separate function for initial load up of game incase player starts off in landscape, as the event listener only handles a resize event*/
+
+var checkBlock = document.getElementById("landscapeblock");
+window.onload = function(){
+	if (window.innerHeight < window.innerWidth && checkBlock === null)     {  
+		var img = document.createElement('img');
 		img.setAttribute("id", "landscapeblock");                      //attributes and style of created element
 		img.setAttribute("style", "position:absolute;");
 		img.setAttribute("src", "images/landscapeblock.jpg");
@@ -15,12 +17,29 @@ function landscapeBlock()
 		img.style.height = '100%';
 		img.style.width = '100%';
 		img.style.zIndex = "100";
-		img.style.margin = '0';
-      case 0:
-        var removeBlock = document.getElementById('landscapeblock');
-		removeBlock.parentNode.removeChild(removeBlock);
-    }
-  }
+		img.style.left = '0px';
+		img.style.top = '0px';
+	};
+};
+
+window.addEventListener("resize",function(){
+    if(window.innerHeight < window.innerWidth && checkBlock === null) 
+    {  
+			var img = document.createElement('img');
+			img.setAttribute("id", "landscapeblock");                      //attributes and style of created element
+			img.setAttribute("style", "position:absolute;");
+			img.setAttribute("src", "images/landscapeblock.jpg");
+			document.body.appendChild(img);
+			img.style.height = '100%';
+			img.style.width = '100%';
+			img.style.zIndex = "100";
+			img.style.left = '0px';
+			img.style.top = '0px';
+	} else {
+		var blockRemove = document.getElementById("landscapeblock");
+        blockRemove.parentNode.removeChild(blockRemove);
+    };
+});
 
 
 
@@ -85,7 +104,7 @@ var resource = {
         this.updateAmountDisplay();
         this.updatePriceDisplay();
     },
-	//same function as add but subtract
+	//same function as add 	but subtract
 	subtract: function(amount) {
         this.add(-amount);
         this.updateAmountDisplay();
@@ -173,10 +192,10 @@ resource.luckPotion = Object.create(resource);
 resource.luckPotion.name = 'luckPotion';
 resource.luckPotion.basePrice = 15;
 document.getElementById('luckPotion_store').addEventListener('click', function() {
-   var luckPotionOwned = resource.amulet.amountOwned;
+   var luckPotionOwned = resource.luckPotion.amountOwned;
 	if (luckPotionOwned === 0){
 		resource.luckPotion.buy(1);
-		resource.luckPotion.addToInvent("luckPotion: ");
+		resource.luckPotion.addToInvent("Luck Potion: ");
 		resource.luckPotion.updateAmountDisplay()          //creates display element if this is first potion purchased
 		resource.luckPotion.useItemButton();
 	} else {
@@ -213,7 +232,7 @@ document.getElementById("elfqueen").addEventListener('click', function () {
 	if (steps < 5){
 		tradeResources.blessing.add(1);
 		};
-	if (steps > 0 && steps < 4){
+	if (steps > 0 && steps < 5){
 		takeStep();
 		if (steps > 1){
 			document.getElementById('buttontext').innerHTML = "Pray to the Queen";
@@ -299,7 +318,8 @@ var story = [
 	{ steps: 2, text: 'As is custom you take a knee and offer your prayers to the Queen, it is said that those who are blessed carry the light of the Queen wherever they go.<br>'},
 	{ steps: 3, text: '“Most trusted friend of the Royal family, I apologise for the confusion but dark times have descended upon our Kingdom and we require your urgent assistance. Creatures from the Void Realm roam our forests as we speak, carving scars through the land and annihilating all life in their path. As of yet, we have no idea where they came from although their movements suggest they travelled from the mountains in the East. Go there and consult with the Men and the Dwarves, discover if they know more than we. Take gold from the Well of Riches and perhaps something to protect you.” <br>'},
 	{ steps: 4, text: 'The honour of a personal request from the Queen is too great to decline, so after thanking her for her kindness and bidding all in the Spire farewell, you are ready leave on your journey to the east. It may be wise to grab some supplies.<br>'},
-	{ steps: 5, text: 'The Forest<br><br>Beyond the Spire gates lies the Queens forest, as emissary to the High Elf council you are to travel east to consult with the League of Dwarves and Men, hopefully to discover the origins of these creatures of the night.<br>'},
+	{ steps: 5, text: 'This is the end of the ElfenTrail story demo, you may still explore the interface and check out some of the features such as the shop and inventory, thanks for playing!'},
+	{ steps: 6, text: 'The Forest<br><br>Beyond the Spire gates lies the Queens forest, as emissary to the High Elf council you are to travel east to consult with the League of Dwarves and Men, hopefully to discover the origins of these creatures of the night.<br>'},
 ]
 
 //function for progressing through the story, adds 1 to the steps variable if called and displays the corresponding item from the 'story' array
@@ -310,9 +330,13 @@ function takeStep(){
 	var storyBit = story[0];
 	
 	//check if the number of steps is enough for the story piece to show
-	if (steps >= storyBit.steps) {
+	if (steps >= storyBit.steps && steps <= 4) {
 	story.shift();
 	textBox.innerHTML = "<p>" + storyBit.text + "</p>" + textBox.innerHTML;
+		};
+	if (steps === 5) {
+	story.shift();
+	textBox.innerHTML = "<p style='color:red'>" + storyBit.text + "</p>" + textBox.innerHTML;
 		};
 };
 	
