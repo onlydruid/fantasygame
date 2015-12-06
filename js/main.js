@@ -18,7 +18,7 @@ function landscapeBlock()
 		img.style.margin = '0';
       case 0:
         var removeBlock = document.getElementById('landscapeblock');
-		removeblock.parentNode.removeChild(removeBlock);
+		removeBlock.parentNode.removeChild(removeBlock);
     }
   }
 
