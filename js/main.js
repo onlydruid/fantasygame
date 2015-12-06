@@ -1,11 +1,6 @@
 var goldOn = false;  /*variable for determining whether a gold coin is currently on screen, 
 due to a bug only one gold coin could be present at a time but also to avoid users being able to overcrowd the page the bug was never fixed and became a feature*/
 
-if(window.innerHeight < window.innerWidth){
-
-}
-
-
 function landscapeBlock()
   {
     switch(window.orientation) 
@@ -25,7 +20,7 @@ function landscapeBlock()
     }
   }
 
-  window.addEventListener('orientationchange', doOnOrientationChange);
+ window.addEventListener('orientationchange', landscapeBlock);
 
 
 //hiding elements at start of game
