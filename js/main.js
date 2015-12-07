@@ -7,6 +7,7 @@ however if the user starts the game in landscape the message will not show.
 Separate function for initial load up of game in case player starts off in landscape, as the event listener only handles a resize event*/
 
 
+
 window.addEventListener("deviceorientation",function(){
     if(document.documentElement.clientHeight < document.documentElement.clientWidth && checkBlock === null) 
     {  
