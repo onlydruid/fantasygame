@@ -7,49 +7,27 @@ however if the user starts the game in landscape the message will not show.
 Separate function for initial load up of game in case player starts off in landscape, as the event listener only handles a resize event*/
 
 
-
-
-
-window.addEventListener("deviceorientation",onOrientationChange});
-
-onOrientationChange: function () {
-    switch(window.orientation) {
-    case 0:
+//device orientation sometimes is non-functional
+window.addEventListener("deviceorientation",function(){
+	var checkBlock = document.getElementById('landscapeblock');
+    if(document.documentElement.clientHeight < document.documentElement.clientWidth && checkBlock === null) 
+    {  
+			var img = document.createElement('img');
+			img.setAttribute("id", "landscapeblock");                      //attributes and style of created element
+			img.setAttribute("style", "position:absolute;");
+			img.setAttribute("src", "images/landscapeblock.jpg");
+			document.body.appendChild(img);
+			img.style.height = '100%';
+			img.style.width = '100%';
+			img.style.zIndex = "100";
+			img.style.left = '0px';
+			img.style.top = '0px';
+	} else {
 		var blockRemove = document.getElementById("landscapeblock");
-		if(blockRemove){
-        
         blockRemove.parentNode.removeChild(blockRemove);
-		}
-        break;
-    case 90:
-        //var img = document.createElement('img');
-			img.setAttribute("id", "landscapeblock");                      //attributes and style of created element
-			img.setAttribute("style", "position:absolute;");
-			img.setAttribute("src", "images/landscapeblock.jpg");
-			document.body.appendChild(img);
-			img.style.height = '100%';
-			img.style.width = '100%';
-			img.style.zIndex = "100";
-			img.style.left = '0px';
-			img.style.top = '0px';
-        break;
-    case -90:
-        //var img = document.createElement('img');
-			img.setAttribute("id", "landscapeblock");                      //attributes and style of created element
-			img.setAttribute("style", "position:absolute;");
-			img.setAttribute("src", "images/landscapeblock.jpg");
-			document.body.appendChild(img);
-			img.style.height = '100%';
-			img.style.width = '100%';
-			img.style.zIndex = "100";
-			img.style.left = '0px';
-			img.style.top = '0px';
-        break;
-    case 180:
-        //180 degrees from default
-        break;
-    }
-}
+    };
+});
+
 
 
 //hiding elements at start of game
