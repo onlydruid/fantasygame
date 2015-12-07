@@ -24,7 +24,8 @@ window.addEventListener("deviceorientation",function(){
 			img.style.top = '0px';
 	} else {
 		var blockRemove = document.getElementById("landscapeblock");
-        blockRemove.parentNode.removeChild(blockRemove);
+		if(checkBlock){
+        blockRemove.parentNode.removeChild(blockRemove);};
     };
 });
 
