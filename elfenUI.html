@@ -30,20 +30,20 @@
 		<!-- some of the buttons for actions in the game, trapped inside a container to calm their wild passions -->
 		<div id="actionscont">
 			<button id="goldfinder" class="actionbutton">
-				<img id="findereyes" src="images/eyes.gif" height="25px" width="25px">
+				<img id="findereyes" src="images/wellofriches1.png" height="30px" width="30px">
 				<br>
 				Well of Riches
 			</button>
 			
 			<div id="elfqueen" class="actionbutton">
-				<img src="images/elfqueen.png" height="50px" width="30px">
+				<img src="images/royalseal.png" height="30px" width="30px">
 				<br>
 				<span id="buttontext">Enter the Queens Chamber</span>
 			</div>
 		
 		
 			<button id="lookaround" class="actionbutton">
-				<img id="findereyes" src="images/eyes.gif" height="25px" width="25px">
+				<img id="findereyes" src="images/lookaround.png" height="30px" width="30px">
 				<br>
 				Look Around
 			</button>
@@ -68,16 +68,19 @@
 		<span class="paneltitle">Shop</span>
 		<br>
 		<div id="amulet_store" alt="Grants blessing over time" class="shop_item"> <!-- The images within this div are the shop items, although on the finished app they won't necessarily all be there as the shop items will appear and disappear depending on the story position --> 
-			<img src="images/breadimage.png" height="25px" width="25px">
-			<br>Purchase Holy Amulet : <span id="amulet_cost">15</span> Gold
+			<img src="images/holyamulet.png" height="35px" width="35px">
+			<br>Purchase Holy Amulet : <span id="amulet_cost">15</span> Gold<br><br>
+			<span class="itemdescript">May protect you in dark times.</span>
 		</div>
-		<div id="luckPotion_store" alt="Grants chances to find gold every 5s for 30s upon use" class="shop_item" alt="Coins you find are worth between 5-15 gold.">
-			<img src="images/potionimage.gif" height="25px" width="25px">
-			<br>Purchase Luck Doubling Potion: 25 Gold
+		<div id="luckPotion_store"  class="shop_item" alt="Coins you find are worth between 5-15 gold.">
+			<img src="images/potionimage.gif" height="35px" width="35px">
+			<br>Purchase Luck Doubling Potion: 25 Gold<br><br>
+			<span class="itemdescript">Chance to find gold for 30 seconds on use.</span>
 		</div>
 		<div id="crystal_ball" class="shop_item">
-			<img src="images/crystalimage.gif" height="25px" width="25px"> <!--in the final version these elements won't be here by default, they will be created as necessary in the same way the inventory items are, this is the only reason why there is some inline styling mixed in here-->
-			<br>Purchase Crystal Ball: 1000 Gold
+			<img src="images/crystalimage.gif" height="35px" width="35px"> <!--in the final version these elements won't be here by default, they will be created as necessary in the same way the inventory items are, this is the only reason why there is some inline styling mixed in here-->
+			<br>Purchase Crystal Ball: 1000 Gold<br><br>
+			<span class="itemdescript">Caveat Emptor</span>
 		</div>
 	</div>
 	<!-- options menu-->

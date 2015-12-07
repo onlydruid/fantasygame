@@ -45,6 +45,7 @@ background-position: top center;
 	font-family: 'Press Start 2P', cursive;
 	text-decoration: underline;
 	padding-bottom: 15px;
+	text-align: center;
 }
 
 /* formatting for the shop item buttons */
@@ -53,8 +54,8 @@ background-position: top center;
 	margin-top: 20px;
 	text-align: center;
 	display: inline-block;
-	width: 75px;
-	height: 75px;
+	width: 100px;
+	height: 125px;
 	background-color: #FFF5EB;
 	border-style: solid;
 	border-width: 2px;
@@ -114,9 +115,7 @@ background-position: top center;
 }
 
 
-#elfqueen:hover {
-	background-color: #E6DCD4;
-}
+
 #blessing_amount {
 	margin: auto;
 	width: 6em;
@@ -163,4 +162,46 @@ background-position: top center;
 	cursor: pointer;
 }
 	
+/*INSTRUCTIONS PAGE /////////////////////////////////////////////////////////////////////////////*/
+#instructionscont {
+	position: absolute;
+	top: 35%;
+	left: 7.5%;
+	width: 80%;
+	height: 40%;
+	padding: 5px;
+	border-style: solid;
+    border-width: 2px;
+	background-color: #ffffff;
+	}
 	
+#instructionscont p {
+	float: left;
+	display: block;
+	height: 100px;
+	width: 200px;
+	font-size: 12px;
+	font-family: Arial;
+	margin-left: 7%;
+	}
+
+#instructionscont img{
+	margin-left: 10%;
+	vertical-align: top;
+	width: 35%;
+	}
+	
+#instructionstitle{
+	margin-top: 30%;
+	height: 100px;
+	width:	275px;
+	margin-left: 50%;
+	-ms-transform:translateX(-50%);
+	-webkit-transform:translateX(-50%);
+	transform:translateX(-50%);
+	}
+
+#tabs {
+	width: 200px;
+	height: 20px;
+	}
