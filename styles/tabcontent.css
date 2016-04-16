@@ -1,20 +1,25 @@
-﻿/* Tab Content - menucool.com */
+/* Tab Content - menucool.com */
 ul.tabs
 {
-    padding: 14px 0 8px;
-    margin:0;
+	position: absolute;
+	top: calc(53%);
+    padding: 14px 0 30px;
+    margin:2px;
     font-size: 0;
     list-style-type: none;
     text-align: center; /*set to left, center, or right to align the tabs as desired*/
-    background: #DDDDE3;
+    background: #ffccff;
     border:1px solid #CCC;
     border-bottom:none;
     border-radius: 2px 2px 0 0;
+	width: 90%;
+	left: 5%;
 }
         
 ul.tabs li
 {
     display: inline;
+	vertical-align: bottom;
     margin: 0;
     margin-right: 2px;/*distance between tabs*/
     font: normal 12px Verdana;
@@ -24,7 +29,7 @@ ul.tabs li a
 {
     text-decoration: none;
     position: relative;
-    padding: 8px 22px;
+    padding: 8px 10px;
     color: #000;
     border-radius: 3px 3px 0 0;
     outline:none;
@@ -56,8 +61,15 @@ ul.tabs li.selected a:hover, ul.tabs li.selected a:hover
 
 div.tabcontents
 {
-    border: 1px solid #CCC; padding: 30px;
-    border-top-color:#AAA;
+	text-align: center;
+	position: absolute;
+    border: 1px solid #CCC; 
+	left: 5%;
+	padding-top: 20px;
+	width: 90vw;
+	height: 35%;
+    border-top-color:#ffccff;
     background-color:#FFF;
-    border-radius: 0 0 2px 2px;
+    border-radius: 2px;
+
 }
