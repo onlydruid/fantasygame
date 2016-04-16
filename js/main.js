@@ -480,7 +480,7 @@ var story = [
 			var textBox = document.getElementById('textbox');
 			var tinderCheck = resource.tinderBox.amountOwned; 
 			if(tinderCheck > 0 && !hearer){ 
-				textBox.innerHTML = 'Lighting a fire: tap the Tinder Box button as fast as you can to cause a spark.' + textBox.innerHTML;
+				textBox.innerHTML = 'Success! With the fire lit you can now rest your head and sleep. Tomorrow will be another long day.' + textBox.innerHTML;
 			}else if (hearer = 1) {
 				textBox.innerHTML = "Forgoing a campfire, you lay your head down for the night. Your bones ache; today has been quite an adventure! It doesn't take long before you're fast asleep." + textBox.innerHTML;
 			}else{
@@ -488,7 +488,7 @@ var story = [
 			}
 		}
 	},
-	{ steps: 29, text: 'Success! With the fire lit you can now rest your head and sleep. Tomorrow will be another long day.' },
+	{ steps: 29, text: '' },
 	{ steps: 30, text: 'You awake suddenly to a crippling pain. The hot, steaming breath of a wild bear draws closer from out of the pitch black and you feel a great claw tear deep into your chest, puncturing both lungs. This is the end…'},
 ]
 //function for progressing through the story, adds 1 to the steps variable if called and displays the corresponding item from the 'story' array
