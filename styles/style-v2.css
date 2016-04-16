@@ -10,7 +10,7 @@ body {
 	margin: 0;
 	background-image:url('../images/1stbg.jpg');
 	background-size: cover;
-	overflow-x: hidden;
+	overflow: hidden;
 }
 
 #wrapper {
@@ -147,6 +147,7 @@ progress[value]::-webkit-progress-value {
 	position: absolute;
 	display: inline-block;
 	height: calc(50vh - 165px);
+	min-height: 300px;
 	width: 90vw;
 	background-color: white;
 	font-family: 'Press Start 2P', cursive;
@@ -225,7 +226,7 @@ ul {
 		position: absolute;
 		left: 2px;
 		font-family: 'Press Start 2P', cursive;
-		font-size: 16px;
+		font-size: 8px;
 		text-align: center;	}
 
 /*------------------------PAGES------------------------*/
@@ -317,8 +318,8 @@ ul {
 .panel-img{
 	display: inline-block;
 	margin: 0 auto;
-	height: 20vw;
-	width: 20vw;
+	height: 15vw;
+	width: 15vw;
 	padding-top: 10px;
 	max-width: 150px;
 	display: block;
@@ -334,8 +335,8 @@ ul {
 	border-width: 3px;
 	font-size: 16px;
 	border-radius: 20px;
-	height: 30vw;
-	width: 30vw;
+	height: 25vw;
+	width: 25vw;
 	max-height: 300px;
 	max-width: 300px;
 	min-height: 125px;
@@ -361,7 +362,7 @@ ul {
  	}
 
  	.tab-txt{
- 		padding-top: 50px;
+ 		padding-top: 35px;
  	}
 
  	.panel {
@@ -371,10 +372,10 @@ ul {
 	border: solid;
 	border-color: black;
 	border-width: 3px;
-	font-size: 16px;
+	font-size: 12px;
 	border-radius: 20px;
-	height: 25vw;
-	width: 25vw;
+	height: 20vw;
+	width: 20vw;
 	max-height: 300px;
 	max-width: 300px;
 	min-height: 125px;
@@ -387,8 +388,8 @@ ul {
 .panel-img{
 	display: inline-block;
 	margin: 0 auto;
-	height: 15vw;
-	width: 15vw;
+	height: 10vw;
+	width: 10vw;
 	padding-top: 10px;
 	max-width: 150px;
 	display: block;
