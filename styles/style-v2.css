@@ -26,8 +26,8 @@ body {
 	margin-bottom: 20px;
 	color: white;
 	line-height: 30px;
-			font-family: 'Press Start 2P', cursive;
-		font-size: 12px;
+	font-family: 'Press Start 2P', cursive;
+	font-size: 12px;
 }
 
 #hp {
@@ -135,6 +135,7 @@ progress[value]::-webkit-progress-value {
 	position: relative;
 	width: 90vw;
 	height: calc(50vh - 165px);
+	min-height: 400px;
 	overflow: hidden;
 	border-style: solid;
 	border-width: 3px;
@@ -147,12 +148,12 @@ progress[value]::-webkit-progress-value {
 	position: absolute;
 	display: inline-block;
 	height: calc(50vh - 165px);
-	min-height: 300px;
+	min-height: 400px;
 	width: 90vw;
 	background-color: white;
 	font-family: 'Press Start 2P', cursive;
 	overflow: auto;
-	font-size: 12px;
+	font-size: 8px;
 	padding: 5px;
 }
 
@@ -405,6 +406,6 @@ ul {
 	display: inline-block;
 	vertical-align: top;
 	font-family: 'Press Start 2P', cursive;
-	font-size: 16px;
+	font-size: 12px;
 
 }
