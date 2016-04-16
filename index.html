@@ -1,23 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="styles/tabcontent.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="styles/style.css">
+<link rel="stylesheet" type="text/css" href="styles/style-v2.css">
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
+<link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
 </head>
-
-
 <body>
+<div id="wrapper">
+	<div id="stats">
+		<div id="gold">Gold ($):
+		 <span id="gold_amount">0</span>
+		</div>
+		<div id="hp">HP: 
+			<progress max="100" value="100" id="hpbar"></progress>
+		</div>
+	</div>
+	<div id="clear"></div>
+	<div id="storybox">
+		<div id="textbox"><img id="text-title" src="images/elfentrail_title.png"/>Welcome to <span class="purpletext">ElfenTrail</span>, a text-based adventure game! To get started please press the <span class="greentext">ACTIONS</span> tab from the menu below and use the Look Around button. From the <span class="greentext">ACTIONS</span> menu you will control most of your interactions with the world of ElfenTrail. You may visit the <span class="greentext">SHOP</span> when you are close to one, there will be clues in the story. Once you have items, you may use them by selecting the <span class="greentext">BAG</span> tab. Finally, if you would like to play the game music, save or load your game then select the <span class="greentext">OPTIONS</span> tab.</div>
+		<div id="fade"></div>
+	</div>
+	<div id="pagewrapper">
+		<div id="menu">
+			<ul>
+				<li class="menuitem"><img class="tab-bg" src="images/tab.png"/><span class="tab-txt" onclick="show('actions')">ACTIONS</span></li>
+				<li class="menuitem"><img class="tab-bg" src="images/tab.png"/><span class="tab-txt" onclick="show('bag')">BAG</span></li>
+				<li class="menuitem"><img class="tab-bg" src="images/tab.png"/><span class="tab-txt" onclick="show('shop')">SHOP</span></li>
+				<li class="menuitem"><img class="tab-bg" src="images/tab.png"/><span class="tab-txt" onclick="show('options')">OPTIONS</span></li>
+			</ul>
+		</div>
+		<div class="page" id="actions" style="display:none">
+			<div id="panel-cont">
+				<div id="panel1" class="panel">
+				</div>
+				<div id="panel2" class="panel">
+				</div><br/>
+				<div id="panel3" class="panel">
+				</div>
+				<div id="panel4" class="panel">
+				</div>
+			</div>
+		</div>
+		<div class="page" id="bag" style="display:none">
+			<div class="pagewrapper">
+				<div class="inventory" >
+					<div id="bag-cont" class="list-cont">Your BAG is currently empty!</div>
+            	</div>
 
-
-<img id="description" src="images/descriptiontext.png">
-
-<div id="menucontainer">
-	<img id="menutitle" src="images/mainmenu.png">
-	<a href="elfenUI.html"> <img class="menuitem" src="images/play.png"> </a>
-	<a href="instructions.html"><img class="menuitem" src="images/instructions.png">
+			</div>
+		</div>
+		<div class="page" id="shop" style="display:none">
+			<div class="pagewrapper">
+				<div class="inventory" >
+					<div id="shop-cont" class="list-cont">You should speak to the Queen before visiting the SHOP.</div>
+            	</div>
+			</div>
+		</div>
+		<div class="page" id="options" style="display:none">
+			<div class="pagewrapper">
+				<h1>Options</h1>
+				<div id="optlist">
+					<div id="music">
+						<h2>Music:</h2>
+						<p><span class="On">On</span>|<span class="Off">Off</span>
+					</div>
+					<div class="sl-opt">
+						<button id="load-btn"class="saveload">Load Game</button>
+					</div>
+					<div class="sl-opt">
+						<button id="save-btn" class="saveload">Save Game</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
-</body>
 
+<script src="js/pages.js"> </script> <!-- linking the main.js file at the end loads it after everything else in the document has been read -->
+<script src="js/main.js"> </script>
+</body>
 </html>

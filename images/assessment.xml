@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="assessmentstylesheet.xsl" version="1.0" 
+?>
+
+<assessmentInformation>
+	<unit code="U23494">
+		<shortCode>CT5DAMP</shortCode>
+		<title>Data Manipulation and Presentation</title>
+		<level>5</level>
+		<lecturerId>1</lecturerId>
+		<artefact reference="1-CWORK-CW">
+			<weighting>40%</weighting>
+			<description>Do some stuff</description>
+			<dueDate>10/1/2015</dueDate>
+		</artefact>
+		<artefact reference="1-REPORT-CW">
+			<weighting>60%</weighting>
+			<description>Do some other stuff</description>
+			<dueDate>10/5/2015</dueDate>
+		</artefact>
+		<course>Digital Media</course>
+		<course>Entertainment Technology</course>
+		
+	</unit>
+	
+	<unit code="U23494">
+		<shortCode>CT5DESIC</shortCode>
+		<title>Designing Interactive Content</title>
+		<level>5</level>
+		<lecturerId>2</lecturerId>
+		<artefact reference="1-CWORK-CW">
+			<weighting>40%</weighting>
+			<description>Do desic stuff</description>
+			<dueDate>17/1/2015</dueDate>
+		</artefact>
+		<artefact reference="1-REPORT-CW">
+			<weighting>60%</weighting>
+			<description>write about desic</description>
+			<dueDate>17/5/2015</dueDate>
+		</artefact>
+		<course>Digital Media</course>
+		
+	</unit>
+
+	<user>
+		<userId>1</userId>
+		<name>Kevin Curtis</name>
+		<email>kevin.curtis@port.ac.uk</email>
+		<phoneExt>5466</phoneExt>
+		<role>lecturer</role>
+	
+	</user>
+</assessmentInformation>
+
+<!-- DISCUSSION OF THE ABOVE
+
+There is no 'correct way' to organise the data, what you are looking for is the method that best matches what you want to 'do' with it.
+
+In this example you will notice the use of <assessmentInformation> as a root tag - this is because an xml doc needs one root.
+
+In the above, course is used multiple times in the unit deficition. This is ok in xml terms and means that if I searched for all units on DM level 4 I could get that info. If you take the course info out into a separate element you then have the issue that you cannot re-use <unit> in the same document so you would either need a different name, or put it in an external xml sheet.
+-->
+

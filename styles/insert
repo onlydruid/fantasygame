@@ -1,0 +1,33 @@
+<html>
+<body>
+
+<?php
+	$servername = "localhost";
+	$username = "root";
+	$password = "francis1";
+	$dbname = "users";
+
+	//create connection
+
+	$conn = new mysqli($servername, $username, $password, $dbname);
+
+	//check connection
+
+	if ($conn->connect_error) {
+		die("Connection failed: ".$conn->connect_error);
+	}
+
+	mysql_select_db("users", $conn);
+
+	$sql="INSERT INTO userlist(username, password, email) VALUES ('$_POST[username]','$_POST[password]','$_POST[email]')";
+
+	if (!msql_query($sql,$conn)){
+	die('Error: '.mysql_error());
+	echo "1 record added"
+
+	mysql_close($conn)
+	}
+?>
+
+</body>
+</html>
