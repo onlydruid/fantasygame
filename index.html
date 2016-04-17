@@ -57,18 +57,22 @@
 		</div>
 		<div class="page" id="options" style="display:none">
 			<div class="pagewrapper">
-				<h1>Options</h1>
 				<div id="optlist">
 					<div id="music">
 						<h2>Music:</h2>
-						<p><span class="On">On</span>|<span class="Off">Off</span>
+						<span class="audiocontrol greentext" id="audioplay">On</span>|<span id="audiostop" class="audiocontrol redtext">Off</span>
+						<audio src="audio/Adventurememe.mp3" controls autoplay loop>
+						</audio>
 					</div>
+					<div id="save-load">
+					<h2>Save/Load:</h2>
 					<div class="sl-opt">
-						<button id="load-btn"class="saveload">Load Game</button>
+						<button id="load-btn" class="saveload">Load Game</button>
 					</div>
 					<div class="sl-opt">
 						<button id="save-btn" class="saveload">Save Game</button>
 					</div>
+				</div>
 				</div>
 			</div>
 		</div>

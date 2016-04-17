@@ -10,12 +10,12 @@ body {
 	margin: 0;
 	background-image:url('../images/1stbg.jpg');
 	background-size: cover;
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 #wrapper {
-	max-height:100vh;
-	max-width:100vw;
+	height:100vh;
+	width:100vw;
 }
 
 #stats {
@@ -135,7 +135,7 @@ progress[value]::-webkit-progress-value {
 	position: relative;
 	width: 90vw;
 	height: calc(50vh - 165px);
-	 min-height: 200px;
+	 min-height: 180px;
 	overflow: hidden;
 	border-style: solid;
 	border-width: 3px;
@@ -148,7 +148,7 @@ progress[value]::-webkit-progress-value {
 	position: absolute;
 	display: inline-block;
 	height: calc(50vh - 165px);
-	min-height: 200px;
+	min-height: 180px;
 	width: 90vw;
 	background-color: white;
 	font-family: 'Press Start 2P', cursive;
@@ -194,7 +194,7 @@ progress[value]::-webkit-progress-value {
 #pagewrapper {
 	position:relative;
 	width: 100vw;
-	height: 60vh;
+	height: 55vh;
 
 }
 
@@ -219,7 +219,9 @@ ul {
 		position: absolute;
 		max-width: 24vw;
 		z-index: -10;
-		min-height: 75px;
+		height: 75px;
+		transform: translateX(50%);
+		right: 50%;
 	}
 
 	.tab-txt{
@@ -232,7 +234,7 @@ ul {
 
 /*------------------------PAGES------------------------*/
 
-/*--menu and bag--*/
+/*--shop and bag--*/
 
 .inventory{
 	font-family: 'Press Start 2P', cursive;
@@ -246,27 +248,14 @@ ul {
 		display: inline-block;
 	}
 
-@media (min-width: 767px){
-.bag-item, .shop-item {
-	display: inline-block;
-	width: 45vw;
-	min-height: 100px;
-	background-image: url('../images/item-bg.png');
-	background-size: cover;
-	}
 
-
-}
-
-@media (max-width: 768px){
 	.bag-item, .shop-item{
 	display: inline-block;
 	width: 90vw;
-	min-height: 100px;
+	height: 100px;
 	background-image: url('../images/item-bg-large.png');
 	background-size: cover;
 	}
-}
 
 .bag-img, .shop-img {
 	max-height: 75px;
@@ -287,32 +276,47 @@ ul {
 .bag-desc, .shop-desc {
 	font-family: 'Press Start 2P', cursive;
 	float: left;
-	font-size: 12px;
+	font-size: 8px;
+	position: absolute;
+	margin-top: 50px;
 	color: white;
-	left: 120px;
+	left: 130px;
 	width: 60%;
 }
 
+
+
 .shop-button{
-	float; right;
+	background: #cc44cc;
+	font-family: 'Press Start 2P', cursive;
+	font-size: 10px;
+	float: right;
+	right: 50px;
+	position: absolute;
+	border-radius: 5px;
 	margin-top: 75px;
-	margin-left: 20px;
+}
+
+@media (min-width: 900px){
+	.shop-button{
+		right: 100px;
+	}
 }
 
 /*--actions--*/
 
 
 
-.panel:hover {
-	-webkit-box-shadow: inset 0px -3px 5px 8px rgba(204,204,204,1);
-	-moz-box-shadow: inset 0px -3px 5px 8px rgba(204,204,204,1);
-	box-shadow: inset 0px -3px 5px 8px rgba(204,204,204,1);
+.panel {
+	-webkit-box-shadow: inset 0px -3px 3px 5px rgba(204,204,204,1);
+	-moz-box-shadow: inset 0px -3px 3px 5px rgba(204,204,204,1);
+	box-shadow: inset 0px -3px 3px 5px rgba(204,204,204,1);
 }
 
  .panel:active {
-	-webkit-box-shadow: inset 0px 3px 5px 8px rgba(0,0,0,0.75);
-	-moz-box-shadow: inset 0px 3px 5px 8px rgba(0,0,0,0.75);
-	box-shadow: inset 0px 3px 5px 8px rgba(0,0,0,0.75);
+	-webkit-box-shadow: inset 0px 3px 3px 5px rgba(0,0,0,0.75);
+	-moz-box-shadow: inset 0px 3px 3px 5px rgba(0,0,0,0.75);
+	box-shadow: inset 0px 3px 3px 5px rgba(0,0,0,0.75);
 }
 
 @media screen and (orientation:portrait) { 
@@ -358,9 +362,6 @@ ul {
  		display: none;
  	}
 
- 	.page{
- 		margin-top: 50px;
- 	}
 
  	.tab-txt{
  		padding-top: 35px;
@@ -397,9 +398,9 @@ ul {
 
 }
 .list-title{
-	margin-top: 50px;
+	margin-top: 10px;
 }
- }
+}
 
 
 .panel-txt{
@@ -408,4 +409,42 @@ ul {
 	font-family: 'Press Start 2P', cursive;
 	font-size: 12px;
 
+}
+
+.audiocontrol {
+	cursor: pointer;
+	font-family: 'Press Start 2P', cursive;
+
+}
+
+
+#optlist{
+	font-family: 'Press Start 2P', cursive;
+	font-size: 12px;
+}
+
+#optlist h1{
+	margin-bottom: 10px;
+}
+
+.saveload{
+	background-color: #cc22cc;
+	border-radius: 5px;
+	border: solid;
+	border-color: black;
+	font-family: 'Press Start 2P', cursive;
+	height: 30px;
+	margin-bottom: 5px;
+}
+
+
+ .saveload:active {
+	-webkit-box-shadow: inset 0px 2px 2px 2px rgba(0,0,0,0.75);
+	-moz-box-shadow: inset 0px 2px 2px 2px rgba(0,0,0,0.75);
+	box-shadow: inset 0px 2px 2px 2px rgba(0,0,0,0.75);
+}
+
+
+audio {
+	display: none;
 }
