@@ -42,6 +42,14 @@ body {
 	color: yellow;
 }
 
+
+#gold {
+	margin-top: 10px;
+	margin-left: 20px;
+	width: 160px;
+	float: left;
+}
+
 progress {
 	-webkit-appearance: progress-bar;
 	box-sizing: border-box;
@@ -115,13 +123,6 @@ progress[value]::-webkit-progress-value {
 	   -webkit-linear-gradient(left,  #99ffbb, #00e600);
 }
 
-#gold {
-	margin-top: 10px;
-	margin-left: 20px;
-	width: 150px;
-	float: left;
-
-}
 
 
 
@@ -155,6 +156,7 @@ progress[value]::-webkit-progress-value {
 	overflow: auto;
 	font-size: 8px;
 	padding: 5px;
+	line-height: 10px;
 }
 
 #fade {
@@ -267,7 +269,7 @@ ul {
 .bag-title, .shop-title {
 	font-family: 'Press Start 2P', cursive;
 	color: white;
-	font-size: 16px;
+	font-size: 12px;
 	float: left;
 	padding-top: 25px;
 	padding-left: 5px;
@@ -281,7 +283,7 @@ ul {
 	margin-top: 50px;
 	color: white;
 	left: 130px;
-	width: 60%;
+	width: 50%;
 }
 
 
@@ -407,7 +409,7 @@ ul {
 	display: inline-block;
 	vertical-align: top;
 	font-family: 'Press Start 2P', cursive;
-	font-size: 12px;
+	font-size: 10px;
 
 }
 

@@ -1,3 +1,4 @@
+var loader = localStorage.getItem('loader');
 var goldOn = false;  /*variable for determining whether a gold coin is currently on screen, 
 only one gold coin can be present at a time to avoid users being able to overcrowd the page*/
 var shift = 0;
@@ -9,6 +10,7 @@ var x;
 var stepsLoadNew;
 var campfire;
 var end;
+var shovelCount = 0;
 
 function die() {
 	var textBox = document.getElementById('textbox');
@@ -127,7 +129,6 @@ var resource = {
 		case "luckPotion":
 			document.getElementById("luckPotion_use").addEventListener("click", function(){	
 				resource.luckPotion.subtract(1);
-				resource.luckPotion.updateAmountDisplay()
 				var j = setInterval(function(){
 					var x = Math.floor((Math.random()*15)+1);  //when the luck potion is used the player has the chance to find between 6-15 gold every two seconds for 10 seconds
 					if (x > 5){									// x is used as the amount of gold given as well as the if parameter
@@ -148,14 +149,29 @@ var resource = {
 		
 		});
 		break;
+		case "repairKit":
+			document.getElementById("repairKit_use").addEventListener("click", function(){	
+			document.getElementById('repairKit_display').style.display = 'none';
+			document.getElementById('textbox').innerHTML = "<p>You repaired your shovel!</p>" + document.getElementById('textbox').innerHTML;
+			resource.repairKit.subtract(1);
+			shovelCount = 0;
+		});
+		break;
+		case "hpPotion":
+			document.getElementById("hpPotion_use").addEventListener("click", function(){	
+				resource.hpPotion.subtract(1);
+				tradeResources.hp.hpAdd(30);
+				document.getElementById('hpPotion_display').style.display = 'none';
+				document.getElementById('textbox').innerHTML = "<p>You used the HP potion, you recovered 30hp!</p>" + document.getElementById('textbox').innerHTML;
+			});
+		break;
+		case "tinderBox":
+			document.getElementById("tinderBox_use").addEventListener("click", function(){	
+				document.getElementById('tinderBox_use').style.display = 'none';
+				document.getElementById('textbox').innerHTML = "<p>The box contains flint and steel, along with some wire wool for kindling. You can light a fire when you are ready to sleep.</p>" + document.getElementById('textbox').innerHTML;
+		});
+		break;
 		};
-	},
-	
-	//for setting up the timed increments, the amount of currency given per second
-	tick: function() {
-	var incItem = tradeResources[this.incrementorOf];
-	incItem.amountOwned += (this.incPerSec);
-	incItem.updateAmountDisplay();
 	},
 	
 	//an add function that adds the amount purchased to the amount owned and will update the inventory/shop price
@@ -237,7 +253,7 @@ tradeResources.hp.amountOwned = 100;
 /*palace store*/
 resource.amulet = Object.create(resource);
 resource.amulet.name = 'amulet';
-resource.amulet.basePrice = 15;
+resource.amulet.basePrice = 25;
 function amuletUse (){
 	document.getElementById('amulet_use').addEventListener("click", function(){
 		resource.amulet.useItem(amulet);
@@ -251,7 +267,7 @@ resource.luckPotion.basePrice = 15;
 
 resource.shovel = Object.create(resource);
 resource.shovel.name = 'shovel';
-resource.shovel.basePrice = 5;
+resource.shovel.basePrice = 10;
 
 /*forest store*/
 
@@ -261,11 +277,11 @@ resource.tinderBox.basePrice = 25;
 
 resource.hpPotion = Object.create(resource);
 resource.hpPotion.name = 'hpPotion';
-resource.hpPotion.basePrice = 15;
+resource.hpPotion.basePrice = 20;
 
 resource.repairKit = Object.create(resource);
 resource.repairKit.name = 'repairKit';
-resource.repairKit.basePrice = 15;
+resource.repairKit.basePrice = 10;
 
 /*PANELS*/
 /*on click of the Coin Well button a gold coin is added at a random location on the page, the random location is taken from the previous bit of code
@@ -297,7 +313,9 @@ panel1.addEventListener('click', function(){
 			takeStep();
 		} else if (steps === 27) {
 			takeStep(1);
-		} else if (steps > 27){
+		} else if (steps > 27 && steps < 38){
+			takeStep();
+		} else if (steps > 38){
 			takeStep();
 		}
 	}
@@ -348,7 +366,7 @@ panel3.addEventListener('click', function(){
 				
 			//when coin is clicked, +1 to gold counter and delete the coin
 			coinIcon.addEventListener('click', function(){
-				tradeResources.gold.add(15);
+				tradeResources.gold.add(3);
 				goldOn = false;
 				coinIcon.parentNode.removeChild(coinIcon);
 				});
@@ -356,6 +374,8 @@ panel3.addEventListener('click', function(){
 			document.getElementById('textbox').innerHTML = "<p>" + "You found nothing in the Well of Riches this time" + "</p>" + document.getElementById('textbox').innerHTML;
 		};
 	} else if (steps >= 6 && resource.shovel.amountOwned > 0) {
+			if (shovelCount < 10){
+				shovelCount++;
 	    		var digChance = Math.floor(Math.random() * (10 + 1) - 1);
 	    		var digAmt = Math.floor(Math.random() * (5 + 1) + 1);
 	    		if (digChance < 5){
@@ -366,8 +386,12 @@ panel3.addEventListener('click', function(){
     				document.getElementById('textbox').innerHTML = "<p>You dug up nothing this time.</p>" + document.getElementById('textbox').innerHTML;
 
     			}
-    		};
-    	}
+    		} else {
+    			document.getElementById('textbox').innerHTML = "<p>Your shovel has broken! You need <span class='greentext'>REPAIR KIT</span> to fix it.</p>" + document.getElementById('textbox').innerHTML;
+
+    		}
+    	};
+    }
 });
 
 
@@ -392,6 +416,8 @@ panel2.addEventListener('click', function(){
 	} else if (steps >= 6 && steps < 9 ){
 		document.getElementById('textbox').innerHTML = "<p>The forest seems infinite as you gaze outward into the vast sea of greens and browns before you.</p>" + document.getElementById('textbox').innerHTML;
 
+	} else if (steps === 38){
+		takeStep();
 	}
 }
 });
@@ -430,10 +456,10 @@ if (!steps){
 var story = [
 	{ steps: 1, text: 'Opening your eyes you find yourself in the palace of the Elf Queen, Whitespire, although weren’t you just at the Forest Tavern enjoying a cold Leafbrew? As you regain your senses you realise the Court Mages must have summed you to consult with the Queen, maybe it’s about all those rumours of some great evil lurking in the forest you’ve been hearing lately.<br>', doSomething: function(){console.log(steps); panel2.innerHTML = "<img class='panel-img' src='images/royalseal.png'><span class='panel-txt'>Talk to the Queen</span>"} },
 	{ steps: 2, text: 'As is custom you take a knee and offer your prayers to the Queen, it is said that those who are blessed carry the light of the Queen wherever they go.<br>'},
-	{ steps: 3, text: '“Most trusted friend of the Royal family, I apologise for the confusion but dark times have descended upon our Kingdom and we require your urgent assistance. Creatures from the Void Realm royalsealm our forests as we speak, carving scars through the land and annihilating all life in their path. As of yet, we have no idea where they came from although their movements suggest they travelled from the mountains in the East. Go there and consult with the Men and the Dwarves, discover if they know more than we. Take gold from the Well of Riches and some supplies from the <span class="greentext">SHOP</span> .” <br>'},
+	{ steps: 3, text: '“Most trusted friend of the Royal family, I apologise for the confusion but dark times have descended upon our Kingdom and we require your urgent assistance. Creatures from the Void Realm roam our forests as we speak, carving scars through the land and annihilating all life in their path. As of yet, we have no idea where they came from although their movements suggest they travelled from the mountains in the East. Go there and consult with the Men and the Dwarves, discover if they know more than we. Take gold from the Well of Riches and some supplies from the <span class="greentext">SHOP</span> .” <br>'},
 	{ steps: 4, text: 'The honour of a personal request from the Queen is too great to decline, so after thanking her for her kindness and bidding all in the Spire farewell, you are ready leave on your journey to the east. It may be wise to grab some supplies from our <span font-color="red">SHOP</span>.<br>', doSomething: function(){panel2.innerHTML = "<img class='panel-img' src='images/royalseal.png'><span class='panel-txt'>Leave the Palace</span>"}},
 	{ steps: 5, text: 'Have you got everything you need? <span class="redtext">You will not be able to return here.</span>'},
-	{ steps: 6, text: 'Beyond the Spire gates lies the Queens forest, as emissary to the High Elf council you are to travel east to consult with the League of Dwarves and Men, hopefully to discover the origins of these creatures of the night.<br> <h1><span class="purpletext">ThE FOREST</span></h1>', doSomething: function(){ 
+	{ steps: 6, text: 'Beyond the Spire gates lies the Queens forest, as emissary to the High Elf council you are to travel east to consult with the League of Dwarves and Men, hopefully to discover the origins of these creatures of the night.<br> <h1><span class="purpletext">THE FOREST</span></h1>', doSomething: function(){ 
 		resource.repairKit.clearShop(); 
 		if (resource.shovel.amountOwned > 0){
 			panel1.innerHTML = "<img class='panel-img' src='images/forest.png'><span class='panel-txt'>Enter the forest.</span>"; 
@@ -518,50 +544,51 @@ var story = [
 			panel3.innerHTML = " ";
 		}
 	},
-	{ steps: 29, text: "", doSomething: function(){
+	{ steps: 29, text: "", doSomething: function()
+	{
 		var textBox = document.getElementById('textbox');
 		if (campfire === 1){
 			textBox.innerHTML = 'You awake to the strong, sweet smell of the surrounding flora being gently blown under your nose by a refreshing morning breeze.' + textBox.innerHTML;
-			panel1.innerHTML = "<img class='panel-img' src='images/sun.png'><span class='panel-txt'>Wake up</span>";
+			panel1.innerHTML = "<img class='panel-img' src='images/sun.png'><span class='panel-txt'>Get up</span>";
 
 		}else{
 			textBox.innerHTML = 'You awake suddenly to a crippling pain. The hot, steaming breath of a wild bear draws closer from out of the pitch black and you feel a great claw tear deep into your chest, puncturing both lungs <span class="redtext">(-60hp)</span>.' + textBox.innerHTML;
 			tradeResources.hp.hpSubtract(60);
 			panel1.innerHTML = "<img class='panel-img' src='images/run.png'><span class='panel-txt'>Run!</span>";
+			if(tradeResources.hp.amountOwned < 1){
 			die(); 
+			}
 		}
 		panel3.innerHTML = "<img class='panel-img' src='images/shovel_pic.png'><span class='panel-txt'>Dig for gold</span> ";
 	}},
 
-	{steps: 30, text: "You gather your things and push onwards. Today feels lucky, the friendly sun beats down on your back as you whistle the tune of 'Queen of Light', a popular Elfen folksong."},
+	{steps: 30, text: "You gather your things and push onwards. Today feels lucky, the friendly sun beats down on your back as you whistle the tune of 'Queen of Light', a popular Elfen folksong.", doSomething: function(){ panel1.innerHTML = "<img class='panel-img' src='images/forest.png'><span class='panel-txt'>Walk</span> " }},
 	{steps: 31, text: "To the left of the path you spot a trench carved into the mud, you decide to check it out."},
 	{steps: 32, text: "As you approach you see the trench is the central, and biggest, of 3 scars in the ground. They look like almost like a giant, monstrous claw-print"},
 	{steps: 33, text: "The print doesn't look fresh, however, and your mission isn't to play detective in the forest. Besides, you have no weapon to defend yourself and you don't want a repeat of the bandit situation."},
 	{steps: 34, text: "You press on, it's important to cover as mch ground as possible today since your food supply is rather limited."},
 	{steps: 35, text: "Through a clearing in the leaves you spot a large wooden building with a thatched roof, smoke is pouring out of the chimney so someone's clearly home."},
 	{steps: 36, text: "As the forest path bends, you see the building is actually a tavern."},
-	{steps: 37, text: "You could use some homemade food and drink after sleeping rough."},
-	{steps: 38, text: "There doesn't seem anything amiss here, so you enter the tavern."},
-	{steps: 39, text: "As the tavern door swings open you see only the bartender, a stout dwarf wearing a leather apron, and a hooded figure sat on the other side of the bar nursing a pint of Leafbrew."},
+	{steps: 37, text: "You could use some homemade food and drink after sleeping rough.", doSomething: function(){
+		panel1.innerHTML = "<img class='panel-img' src='images/door.png'><span class='panel-txt'>Enter the Tavern</span> ";
+	 }},
+	{steps: 38, text: "There doesn't seem anything amiss here, so you enter the tavern.", doSomething: function(){ panel1.innerHTML = " ";}},
+	{steps: 39, text: "As the tavern door swings open you see only the bartender, a stout dwarf wearing a leather apron, and a hooded figure sat on the other side of the bar nursing a pint of Leafbrew.", doSomething: function() { panel1.innerHTML = "<img class='panel-img' src='images/chair.png'><span class='panel-txt'>Sit Down</span> "}},
 	{steps: 40, text: 'Sitting down at the bar, you browse the drinks menu chalked onto a board behind the bartender. The hooded patron turns to you and removes his hood, a familiar face! "Ah, an Elfen Royal Messenger," he must recognise your uniform, " I wondered how long it would take for you Elves to start meddling. You know, you can\'t stop what\'s coming..."'},
-	{steps: 41, text: 'You know the Man before you, but not personally. He is Javal, a former mage of the Order of Xapata, a renowned group of magical mercenaries from the Kingdom of Men.'},
-	{steps: 42, text: '"Tell me what you know of this darkness that has invaded our lands," you demand, locking eyes with the mage.'},
-	{steps: 42, text: '"I will, Elf, if you can offer me refuge in your Kingdom. The lands of Men are burning as we speak, it would be suicide to return," he replies.'},
-	{steps: 42, text: '"I can make no promises," you tell him "but I will do what I can". The mage pauses, sighs and opens his mouth to speak.'},
+	{steps: 41, text: 'You know the Man before you, but not personally. He is Javal, a former mage of the Order of Xapata, a renowned group of magical mercenaries from the Kingdom of Men.', doSomething: function(){ panel1.innerHTML = "<img class='panel-img' src='images/speak.png'><span class='panel-txt'>Speak</span> " }},
+	{steps: 42, text: '"Tell me what you know of this darkness that has invaded our lands," you demand, locking eyes with the mage.', doSomething: function(){panel1.innerHTML = "<img class='panel-img' src='images/listen.png'><span class='panel-txt'>Listen</span> "}},
+	{steps: 42, text: '"I will, Elf, if you can offer me refuge in your Kingdom. The lands of Men are burning as we speak, it would be suicide to return," he replies.', doSomething: function(){ panel1.innerHTML = "<img class='panel-img' src='images/speak.png'><span class='panel-txt'>Speak</span> " }},
+	{steps: 42, text: '"I make no promises, mage" you tell him "but I will do what I can". The mage pauses, sighs and opens his mouth to speak.', doSomething: function(){ panel1.innerHTML = "<img class='panel-img' src='images/listen.png'><span class='panel-txt'>Listen</span> " }},
 	{steps: 42, text: 'END OF CHAPTER 1', doSomething: function() { end = 1; ending();}},
 ]
 //function for progressing through the story, adds 1 to the steps variable if called and displays the corresponding item from the 'story' array
-	
+
 function takeStep(listener){
 
 
 	steps++;
-
-	//first item in story array
 	var storyBit = story[x];
-	console.log(x);
-	console.log(storyBit.steps);
-	console.log(steps);
+	//first item in story array
 	var textBox = document.getElementById('textbox');
 	//check if the number of steps is enough for the story piece to show
 	if (steps >= storyBit.steps) {
@@ -615,9 +642,26 @@ document.getElementById('save-btn').addEventListener('click', function() {
 });
 
 /*LOAD*/
+	
+	document.getElementById('load-btn').addEventListener('click', function() {  
+	localStorage.setItem('loader', 1);											//document needs to refresh on load, since the story bits are shifted out
+	location.reload();
+});
 
-document.getElementById('load-btn').addEventListener('click', function() {
+/*AUDIO*/
+document.getElementById('audioplay').addEventListener('click', function(){		//basic controls for turning music on and off
+	var audio = document.getElementsByTagName('audio')[0];
+	audio.play();
+});
+document.getElementById('audiostop').addEventListener('click', function(){
+	var audio = document.getElementsByTagName('audio')[0];
+	audio.pause();
+});
 
+/*LOAD*/
+
+if(loader > 0){														//loader only fires if the local storage object 'loader' is 1, then loader is reset to 0
+		x = 0;
 	/*buildings*/
 	var shovelLoad = localStorage.getItem('shovelAmt');
 	var amuletLoad = localStorage.getItem('amuletAmt');
@@ -674,21 +718,13 @@ document.getElementById('load-btn').addEventListener('click', function() {
 	
 	var stepsLoad = localStorage.getItem('steps');
 	stepsLoadNew = parseInt(stepsLoad);
-	for (i = 0; i < shift; i++){
-		if(shift < steps){							         //add dummy array elements to compensate for ones that were shifted out
-		story.unshift(0);									
-		} else {
-			var unshifter = shift - steps;
-			story.unshift(unshifter)
-		}
-	};
 	for(var i = 0; i < stepsLoadNew; i++) {
 	var storyBit = story[i];
 	var textBox = document.getElementById('textbox');
 	textBox.innerHTML = "<p>" + storyBit.text + "</p>" + textBox.innerHTML;
 	}
 	steps = stepsLoadNew;
-	x = stepsLoadNew;
+	x = stepsLoadNew ;
 
 	
 
@@ -703,18 +739,8 @@ document.getElementById('load-btn').addEventListener('click', function() {
 	panel3.innerHTML = panelcontents3;
 	panel4.innerHTML = panelcontents4;
 
-
-});
-
-/*AUDIO*/
-document.getElementById('audioplay').addEventListener('click', function(){
-	var audio = document.getElementsByTagName('audio')[0];
-	audio.play();
-});
-document.getElementById('audiostop').addEventListener('click', function(){
-	var audio = document.getElementsByTagName('audio')[0];
-	audio.pause();
-});
+	localStorage.setItem('loader', 0);
+}
 
 
 
