@@ -1,16 +1,17 @@
 var loader = localStorage.getItem('loader');
 var goldOn = false;  /*variable for determining whether a gold coin is currently on screen, 
 only one gold coin can be present at a time to avoid users being able to overcrowd the page*/
+
+//below are other variables that need to be created at the start of the game, even if undefined, as certain statements and functions rely on the existence of these variables
 var shift = 0;
 var clicks = 0;
-/*event listener to check if on resize the window is landscape, if so display the maintenance message. remove if back to portrait
-however if the user starts the game in landscape the message will not show. 
-Separate function for initial load up of game in case player starts off in landscape, as the event listener only handles a resize event*/
 var x;
 var stepsLoadNew;
 var campfire;
 var end;
 var shovelCount = 0;
+
+//endgame functions, die is self explanatory and ending stops panels from pushing through anymore text and instead lets the player know that the game is over
 
 function die() {
 	var textBox = document.getElementById('textbox');
@@ -210,7 +211,7 @@ var resource = {
             costElement.innerHTML = this.getPrice();
         }
     },
-	//lets the item appear in player inventory if it is the first one bought, updates the amount owned
+	//function for later use where players will visit vendors who sell more than 1 of each item
     updateAmountDisplay: function() {
         var displayElement = document.getElementById(this.name + '_display');
         var amountElement = document.getElementById(this.name + '_amount');
@@ -284,10 +285,8 @@ resource.repairKit.name = 'repairKit';
 resource.repairKit.basePrice = 10;
 
 /*PANELS*/
-/*on click of the Coin Well button a gold coin is added at a random location on the page, the random location is taken from the previous bit of code
-some styles and attributes of the element are also modified here, for example on hover over the coin the cursor will turn into a pointer indicating the player may click*/
-
-
+//Below are all the functions for controlling the panels, they mostly involve choosing when to take steps or push through a non-story piece of text
+//also hnadled here are some special functions, like the well of riches button and digging for gold
 var panel1 = document.getElementById("panel1");
 var panel3 = document.getElementById("panel3");
 var panel2 = document.getElementById("panel2");
@@ -415,9 +414,13 @@ panel2.addEventListener('click', function(){
 		}
 	} else if (steps >= 6 && steps < 9 ){
 		document.getElementById('textbox').innerHTML = "<p>The forest seems infinite as you gaze outward into the vast sea of greens and browns before you.</p>" + document.getElementById('textbox').innerHTML;
-
+	}else if (steps > 9){
+				document.getElementById('textbox').innerHTML = "<p>Deeper into the forest the trees grow evermore imposing.</p>" + document.getElementById('textbox').innerHTML;
 	} else if (steps === 38){
 		takeStep();
+	} else if (steps > 38){
+		document.getElementById('textbox').innerHTML = "<p>The tavern is small and cosy, the furniture is mostly handmade and shadows cast by candles dance happily along the wall.</p>" + document.getElementById('textbox').innerHTML;
+
 	}
 }
 });
@@ -437,7 +440,7 @@ panel4.addEventListener('click', function(){
 			setInterval(function(){ clicks = 0 }, 2000);
 		}
 		clicks++;
-		console.log(clicks);
+		console.log(clicks);		//if the user can make 5 clicks in two seconds, the fire will light. otherwise the timer will reset until the conditions are met
 		if(clicks === 6){
 			takeStep();
 		}
@@ -447,7 +450,7 @@ panel4.addEventListener('click', function(){
 
 // STORY \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-// getgethtml element to display story in
+// get html element to display story in
 var textBox = document.getElementById('textBox');
 if (!steps){
 	var steps = 0;
@@ -478,7 +481,7 @@ var story = [
 				panel4.innerHTML = "<img class='panel-img' src='images/purse.png'><span class='panel-txt'>Hand over gold</span>";}},
 	{ steps: 11, text: " ", 
 				doSomething: function(hearer){						//handling the first proper encounter, the bandits. there are 3 outcomes here handled by if/else if/else statement
-				var textBox = document.getElementById('textbox'); 
+				var textBox = document.getElementById('textbox'); 	// the function handles certain events by listening for a value for 'hearer', certain actions will pass an integer here and perform a specific action relative to the integer
 				var amuletCheck = resource.amulet.amountOwned; 
 				if(amuletCheck > 0 && !hearer){
 					textBox.innerHTML = 'You feel the Holy Amulet starts to rattle against your ribcage, followed by a blinding light and a calming aura. You slip away amid the confusion, shaken but grateful to have escaped the bandits.' + textBox.innerHTML;
@@ -566,7 +569,7 @@ var story = [
 	{steps: 31, text: "To the left of the path you spot a trench carved into the mud, you decide to check it out."},
 	{steps: 32, text: "As you approach you see the trench is the central, and biggest, of 3 scars in the ground. They look like almost like a giant, monstrous claw-print"},
 	{steps: 33, text: "The print doesn't look fresh, however, and your mission isn't to play detective in the forest. Besides, you have no weapon to defend yourself and you don't want a repeat of the bandit situation."},
-	{steps: 34, text: "You press on, it's important to cover as mch ground as possible today since your food supply is rather limited."},
+	{steps: 34, text: "You press on, it's important to cover as much ground as possible today since your food supply is rather limited."},
 	{steps: 35, text: "Through a clearing in the leaves you spot a large wooden building with a thatched roof, smoke is pouring out of the chimney so someone's clearly home."},
 	{steps: 36, text: "As the forest path bends, you see the building is actually a tavern."},
 	{steps: 37, text: "You could use some homemade food and drink after sleeping rough.", doSomething: function(){
@@ -582,6 +585,7 @@ var story = [
 	{steps: 42, text: 'END OF CHAPTER 1', doSomething: function() { end = 1; ending();}},
 ]
 //function for progressing through the story, adds 1 to the steps variable if called and displays the corresponding item from the 'story' array
+// also performs doSomething function if it exists
 
 function takeStep(listener){
 
