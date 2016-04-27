@@ -9,7 +9,7 @@
 body {
 	margin: 0;
 	background-image:url('../images/1stbg.jpg');
-	background-size: cover;
+	background-size: stretch;
 	overflow-x: hidden;
 }
 
